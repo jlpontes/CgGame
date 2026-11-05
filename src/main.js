@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { COLORS } from './config.js';
+import { Maze } from './scene/Maze.js';
 
 // ---------------------------------------------------------------------------
 // Renderer
@@ -16,6 +17,10 @@ renderer.toneMapping = THREE.ACESFilmicToneMapping;
 // ---------------------------------------------------------------------------
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(COLORS.background);
+
+// Cenário: labirinto, pastilhas e porta da casa dos fantasmas
+const maze = new Maze();
+scene.add(maze.group);
 
 // Câmera provisória (o sistema de câmeras vem em uma etapa posterior)
 const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 200);
