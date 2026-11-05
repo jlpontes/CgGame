@@ -1,6 +1,8 @@
 import * as THREE from 'three';
 import { COLORS } from './config.js';
 import { Maze } from './scene/Maze.js';
+import { createPacman } from './models/Pacman.js';
+import { createGhost, GHOSTS } from './models/Ghost.js';
 
 // ---------------------------------------------------------------------------
 // Renderer
@@ -21,6 +23,27 @@ scene.background = new THREE.Color(COLORS.background);
 // Cenário: labirinto, pastilhas e porta da casa dos fantasmas
 const maze = new Maze();
 scene.add(maze.group);
+
+// Personagens: Pac-Man na posição inicial ('P') olhando para a esquerda
+const pacman = createPacman();
+const start = maze.find('P');
+pacman.position.copy(maze.toWorld(start.col + 0.5, start.row));
+pacman.rotation.y = Math.PI; // boca (+X local) virada para -X
+scene.add(pacman);
+
+// Fantasmas: Blinky na saída da casa, os outros três dentro dela
+const ghostSpots = [
+  { col: 13.5, row: 11 },
+  { col: 13.5, row: 14 },
+  { col: 11.5, row: 14 },
+  { col: 15.5, row: 14 },
+];
+const ghosts = GHOSTS.map((def, i) => {
+  const g = createGhost(def.color, def.name);
+  g.position.copy(maze.toWorld(ghostSpots[i].col, ghostSpots[i].row));
+  scene.add(g);
+  return g;
+});
 
 // Câmera provisória (o sistema de câmeras vem em uma etapa posterior)
 const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 200);
