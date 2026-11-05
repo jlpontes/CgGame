@@ -1,4 +1,8 @@
 # Pac-Man 3D — Computação Gráfica
+Joao Pontes 
+Nicolas Ramos 
+Danilo Ramos 
+Tales
 
 Jogo Pac-Man em 3D feito com [three.js](https://threejs.org/) (r160), em HTML + módulos ES, sem etapa de build.
 
