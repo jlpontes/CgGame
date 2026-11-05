@@ -64,8 +64,8 @@ export class CameraSystem {
         camera: new THREE.PerspectiveCamera(55, aspect, 0.5, 200),
         // Acima e atrás do Pac-Man, olhando para ele
         update: (cam, target) => {
-          cam.position.set(target.position.x, 10, target.position.z + 8);
-          cam.lookAt(target.position.x, 0, target.position.z - 1);
+          cam.position.set(target.position.x, 12, target.position.z + 6.5);
+          cam.lookAt(target.position.x, 0, target.position.z - 0.5);
         },
       },
       {
@@ -77,8 +77,8 @@ export class CameraSystem {
           const yaw = target.rotation.y;
           const forward = new THREE.Vector3(Math.cos(yaw), 0, -Math.sin(yaw));
           const p = target.position;
-          cam.position.copy(p).addScaledVector(forward, -2.2).setY(1.3);
-          cam.lookAt(p.x + forward.x * 6, 0.35, p.z + forward.z * 6);
+          cam.position.copy(p).addScaledVector(forward, -2.6).setY(2.1);
+          cam.lookAt(p.x + forward.x * 7, 0, p.z + forward.z * 7);
         },
       },
     ];
