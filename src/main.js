@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { COLORS } from './config.js';
 import { Maze } from './scene/Maze.js';
 import { CameraSystem } from './scene/Cameras.js';
+import { LightSystem } from './scene/Lights.js';
 import { createPacman } from './models/Pacman.js';
 import { createGhost, GHOSTS } from './models/Ghost.js';
 
@@ -65,8 +66,39 @@ window.addEventListener('keydown', (e) => {
   updateCameraHud();
 });
 
-// Luz provisória só para enxergar a cena
-scene.add(new THREE.HemisphereLight(0xffffff, 0x222244, 1.0));
+// ---------------------------------------------------------------------------
+// Iluminação — ver scene/Lights.js
+// ---------------------------------------------------------------------------
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+const lights = new LightSystem(scene, pacman);
+const hudLights = document.getElementById('hud-lights');
+
+function renderLightsHud() {
+  hudLights.innerHTML = '';
+  lights.lights.forEach((entry, i) => {
+    const li = document.createElement('li');
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = entry.light.visible ? 'light on' : 'light off';
+    btn.innerHTML = `<kbd>${entry.key}</kbd> ${entry.label} <b>${entry.light.visible ? 'ON' : 'OFF'}</b>`;
+    btn.addEventListener('click', () => {
+      lights.toggle(i);
+      renderLightsHud();
+    });
+    li.appendChild(btn);
+    hudLights.appendChild(li);
+  });
+}
+renderLightsHud();
+
+window.addEventListener('keydown', (e) => {
+  const i = lights.indexForKey(e.key);
+  if (i === -1) return;
+  lights.toggle(i);
+  renderLightsHud();
+});
 
 window.addEventListener('resize', () => {
   cameras.setAspect(window.innerWidth / window.innerHeight);

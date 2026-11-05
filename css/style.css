@@ -52,6 +52,47 @@ body {
   text-transform: uppercase;
 }
 
+#hud-lights {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  list-style: none;
+}
+
+.light {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+  padding: 3px 6px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.light:hover,
+.light:focus-visible {
+  border-color: #4a54a0;
+  outline: none;
+}
+
+.light b {
+  margin-left: auto;
+  font-size: 11px;
+}
+
+.light.on b {
+  color: #ffd23a;
+}
+
+.light.off {
+  color: #6a6f8c;
+}
+
 .hud-keys {
   color: #9aa0c0;
   font-size: 12px;
