@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { COLORS } from './config.js';
 import { Maze } from './scene/Maze.js';
+import { CameraSystem } from './scene/Cameras.js';
 import { createPacman } from './models/Pacman.js';
 import { createGhost, GHOSTS } from './models/Ghost.js';
 
@@ -45,17 +46,30 @@ const ghosts = GHOSTS.map((def, i) => {
   return g;
 });
 
-// Câmera provisória (o sistema de câmeras vem em uma etapa posterior)
-const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 200);
-camera.position.set(0, 30, 22);
-camera.lookAt(0, 0, 0);
+// ---------------------------------------------------------------------------
+// Câmeras (projeção perspectiva) — ver scene/Cameras.js
+// ---------------------------------------------------------------------------
+const cameras = new CameraSystem(window.innerWidth / window.innerHeight);
+const hudCamera = document.getElementById('hud-camera');
+
+function updateCameraHud() {
+  const { name, camera } = cameras.active;
+  hudCamera.textContent = `${cameras.index + 1} · ${name} (fov ${camera.fov}°)`;
+}
+updateCameraHud();
+
+window.addEventListener('keydown', (e) => {
+  if (e.key >= '1' && e.key <= '3') cameras.select(Number(e.key) - 1);
+  else if (e.key === 'c' || e.key === 'C') cameras.next();
+  else return;
+  updateCameraHud();
+});
 
 // Luz provisória só para enxergar a cena
 scene.add(new THREE.HemisphereLight(0xffffff, 0x222244, 1.0));
 
 window.addEventListener('resize', () => {
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
+  cameras.setAspect(window.innerWidth / window.innerHeight);
   renderer.setSize(window.innerWidth, window.innerHeight);
 });
 
@@ -63,5 +77,6 @@ window.addEventListener('resize', () => {
 // Loop de renderização
 // ---------------------------------------------------------------------------
 renderer.setAnimationLoop(() => {
-  renderer.render(scene, camera);
+  cameras.update(pacman);
+  renderer.render(scene, cameras.camera);
 });

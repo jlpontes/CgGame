@@ -19,3 +19,53 @@ body {
   width: 100vw;
   height: 100vh;
 }
+
+/* Painel de demonstração (canto superior esquerdo) */
+#hud {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: calc(100vw - 32px);
+  padding: 12px 14px;
+  background: rgba(4, 6, 24, 0.78);
+  border: 1px solid #2a3aa8;
+  border-radius: 6px;
+  font-size: 13px;
+  line-height: 1.4;
+  user-select: none;
+}
+
+.hud-row {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+}
+
+.hud-label {
+  min-width: 56px;
+  color: #8fa2ff;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hud-keys {
+  color: #9aa0c0;
+  font-size: 12px;
+}
+
+kbd {
+  display: inline-block;
+  min-width: 1.6em;
+  padding: 0 4px;
+  border: 1px solid #4a54a0;
+  border-radius: 3px;
+  background: #0d1240;
+  color: #fff;
+  font-family: inherit;
+  font-size: 11px;
+  text-align: center;
+}
