@@ -35,6 +35,7 @@ export class LightSystem {
     s.near = 1;
     s.far = 70;
     sun.shadow.bias = -0.0005;
+    sun.shadow.normalBias = 0.03; // evita "acne" de sombra nas superfícies curvas
     scene.add(sun.target);
 
     // 3) Pontual presa ao Pac-Man (filha do grupo, então se move com ele)
