@@ -19,7 +19,16 @@ export function createGhost(color, name = 'Fantasma') {
   const group = new THREE.Group();
   group.name = name;
 
+  //textura do fantasma
+  const loader = new THREE.TextureLoader();
+  const ghostTex = loader.load('assets/fantasma.png');
+  ghostTex.colorSpace = THREE.SRGBColorSpace;
+  ghostTex.wrapS = THREE.RepeatWrapping;
+  ghostTex.wrapT = THREE.RepeatWrapping;
+  ghostTex.repeat.set(2, 1);
+
   const bodyMat = new THREE.MeshStandardMaterial({
+    map: ghostTex,
     color,
     roughness: 0.4,
     metalness: 0.05,

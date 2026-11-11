@@ -50,7 +50,15 @@ export class Maze {
 
   #buildFloor() {
     const geo = new THREE.PlaneGeometry(this.cols + 2, this.rows + 2);
-    const mat = new THREE.MeshStandardMaterial({ color: COLORS.floor, roughness: 0.85, metalness: 0.1 });
+    // Textura do chão (repetida para cobrir todo o labirinto)
+    const loader = new THREE.TextureLoader();
+    const floorTex = loader.load('assets/chao.jpg');
+    floorTex.colorSpace = THREE.SRGBColorSpace;
+    floorTex.wrapS = THREE.RepeatWrapping;
+    floorTex.wrapT = THREE.RepeatWrapping;
+    floorTex.repeat.set(this.cols / 2, this.rows / 2);
+
+    const mat = new THREE.MeshStandardMaterial({ map: floorTex, color: COLORS.floor, roughness: 0.85, metalness: 0.1 });
     const floor = new THREE.Mesh(geo, mat);
     floor.name = 'Chão';
     floor.rotation.x = -Math.PI / 2;
@@ -67,7 +75,11 @@ export class Maze {
 
     // Um bloco por célula de parede, usando instanciamento (1 draw call)
     const boxGeo = new THREE.BoxGeometry(1, h, 1);
-    const boxMat = new THREE.MeshStandardMaterial({ color: COLORS.wall, roughness: 0.45, metalness: 0.2 });
+    //textura da parede
+    const loader = new THREE.TextureLoader();
+    const wallTex = loader.load('assets/parede.jpg');
+    wallTex.colorSpace = THREE.SRGBColorSpace;
+    const boxMat = new THREE.MeshStandardMaterial({ map: wallTex, color: COLORS.wall, roughness: 0.45, metalness: 0.2 });
     const blocks = new THREE.InstancedMesh(boxGeo, boxMat, walls.length);
     blocks.name = 'Paredes';
     blocks.castShadow = true;
