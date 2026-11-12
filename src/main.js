@@ -175,11 +175,22 @@ function setHelp(open) {
 setHelp(true);
 
 // Um clique também fecha a tela inicial
-window.addEventListener('pointerdown', () => {
+window.addEventListener('pointerdown', (e) => {
+  if (e.target.closest('#help-btn')) return;
   if (helpOpen && helpFirst) {
     helpFirst = false;
     setHelp(false);
   }
+});
+
+const isHelpKey = (e) => e.code === 'KeyI' || e.key === 'i' || e.key === 'I';
+
+// Botão visível (canto superior direito) que faz o mesmo que a tecla I
+$('help-btn').addEventListener('click', (e) => {
+  e.stopPropagation();
+  if (helpOpen && helpFirst) helpFirst = false;
+  setHelp(!helpOpen);
+  e.currentTarget.blur(); // não deixa o foco no botão (Espaço/Enter reativariam o clique)
 });
 
 const MODIFIERS = ['Shift', 'Control', 'Alt', 'Meta', 'CapsLock', 'Tab'];
@@ -194,12 +205,12 @@ window.addEventListener('keydown', (e) => {
     if (helpFirst) {
       helpFirst = false;
       setHelp(false);
-    } else if (e.key === 'i' || e.key === 'I') {
+    } else if (isHelpKey(e)) {
       setHelp(false);
     }
     return;
   }
-  if (e.key === 'i' || e.key === 'I') {
+  if (isHelpKey(e)) {
     setHelp(true);
     return;
   }

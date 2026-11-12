@@ -378,3 +378,22 @@ kbd {
     grid-template-columns: 1fr;
   }
 }
+
+#help-btn {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 20;
+  padding: 8px 12px;
+  background: rgba(4, 6, 24, 0.82);
+  border: 1px solid #2a3aa8;
+  border-radius: 6px;
+  color: #dfe6ff;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+#help-btn:hover {
+  border-color: #ffd23a;
+}
