@@ -385,10 +385,10 @@ window.game = game;
 
 // Para o vídeo: deixa só as 3 pastilhas mais próximas do Pac-Man, para mostrar a vitória rapidamente.
 // Uso: digitar demoVitoria() no console do navegador.
-window.demoVitoria = () => {
+window.demoVitoria = (restam = 3) => {
   const p = game.pacman;
   const dist = (k) => { const [x, z] = k.split(',').map(Number); return Math.hypot(x - p.x, z - p.z); };
-  [...game.pellets.keys()].sort((a, b) => dist(a) - dist(b)).slice(3).forEach((k) => {
+  [...game.pellets.keys()].sort((a, b) => dist(a) - dist(b)).slice(restam).forEach((k) => {
     game.pellets.delete(k);
     maze.hidePellet(k);
   });
