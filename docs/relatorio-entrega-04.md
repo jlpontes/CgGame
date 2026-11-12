@@ -25,7 +25,7 @@ Foram utilizadas quatro texturas de alta definição no formato de imagem (salva
 * **Fantasmas:** `fantasma.jpg` (Textura rugosa/granulada neutra em escala de cinza).
 
 **Abordagem Técnica:**
-Em vez de importar modelos do Blender com texturas embutidas, optamos por utilizar o `THREE.TextureLoader()`. Carregamos os arquivos e os aplicamos na propriedade `map` dos nossos materiais nativos (`MeshStandardMaterial`). Essa abordagem demonstrou o domínio da equipe sobre a API do Three.js, mantendo o código procedural e o carregamento rápido.
+Em vez de importar modelos do Blender com texturas embutidas, optamos por utilizar o `THREE.TextureLoader()`. Carregamos os arquivos e os aplicamos na propriedade `map` dos nossos materiais nativos (`MeshStandardMaterial`).
 
 ## 3. Mapeamento de Texturas (Coordenadas UV)
 
@@ -48,7 +48,7 @@ Para corrigir isso, a matemática do WebGL ($\text{Cor Final} = \text{Textura} \
 
 * **Paredes (`0x5282ff`):** Escolhemos um azul royal vibrante. Ao ser multiplicado pelo cinza médio do concreto (`parede_2.jpg`), resulta no clássico "azul Pac-Man", mantendo todas as imperfeições e ruídos da parede.
 * **Chão (`0xdce4f2`):** Usamos um branco levemente azulado. Isso impediu que a textura do chão escuro (`chao_2.jpg`) desaparecesse na sombra, revelando perfeitamente o rejunte do piso sob as luzes.
-* **Pac-Man (`0xffea75`):** Aplicamos um amarelo super vibrante para interagir com a trama do material (`pacman_2.jpg`), fazendo com que ele se destaque imediatamente em contraste com o cenário, além de captar belamente o brilho da sua luz pontual.
+* **Pac-Man (`0xffea75`):** Aplicamos um amarelo super vibrante para interagir com a trama do material (`pacman_2.jpg`), fazendo com que ele se destaque imediatamente em contraste com o cenário.
 * **Fantasmas:** A textura rugosa neutra (`fantasma_2.jpg`) agiu como base para os vermelhos, rosas, cianos e laranjas originais, colorindo-os sem tirar as propriedades da textura.
 
 ## 5. Capturas de Tela
