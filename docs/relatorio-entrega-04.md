@@ -56,13 +56,13 @@ Para corrigir isso, a matemática do WebGL ($\text{Cor Final} = \text{Textura} \
 As imagens abaixo comprovam o sucesso do mapeamento UV, da readequação das cores base e da interação perfeita das texturas com o sistema de três luzes (Ambiente, Direcional com sombras e Pontual):
 
 **Vitrine de Modelos Texturizados:**
-![Modelos com textura e iluminação](capturas/modelos-personagem-textura.jpg)
+![Modelos com textura e iluminação](capturas/modelos-personagem-textura.png)
 
 **Comportamento das Texturas sob a Luz Dinâmica (Câmera de Perseguição):**
-![Câmera de Perseguição](capturas/cam2-perseguicao-textura.jpg)
+![Câmera de Perseguição](capturas/cam2-perseguicao-textura.png)
 
 **Destaque do Piso e Ponto de Fuga (Câmera em Terceira Pessoa):**
-![Câmera em Terceira Pessoa](capturas/cam3-terceira-pessoa-textura.jpg)
+![Câmera em Terceira Pessoa](capturas/cam3-terceira-pessoa-textura.png)
 
 ## 6. Próximos Passos (Projeto Final)
 
