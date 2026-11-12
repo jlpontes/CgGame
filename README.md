@@ -6,6 +6,17 @@ Tales
 
 Jogo Pac-Man em 3D feito com [three.js](https://threejs.org/) (r160), em HTML + módulos ES, sem etapa de build.
 
+## Entregas
+
+| Entrega | Tema | Relatório |
+|---|---|---|
+| 02 | Modelagem 3D e construção inicial da cena | [docs/relatorio-entrega-02.md](docs/relatorio-entrega-02.md) |
+| 03 | Câmeras, projeção perspectiva e iluminação | [docs/relatorio-entrega-03.md](docs/relatorio-entrega-03.md) |
+
+As capturas de tela estão em [`docs/capturas/`](docs/capturas/).
+
+**Origem dos modelos:** o Pac-Man e os fantasmas foram modelados pelo grupo em código, a partir de primitivas do three.js (veja `src/models/`). Não usamos modelos externos.
+
 ## Como rodar
 
 Os módulos ES não funcionam abrindo o `index.html` direto (`file://`). Sirva a pasta com qualquer servidor estático:
@@ -13,7 +24,8 @@ Os módulos ES não funcionam abrindo o `index.html` direto (`file://`). Sirva a
 ```bash
 cd CgGame
 python3 -m http.server 8000
-# abra http://localhost:8000
+# abra http://localhost:8000              (cena do jogo)
+#   ou http://localhost:8000/modelos.html (vitrine dos modelos, W = wireframe)
 ```
 
 (Ou use a extensão *Live Server* do VS Code.) É preciso internet para baixar o three.js do CDN.
@@ -36,10 +48,13 @@ As luzes também podem ser ligadas/desligadas clicando no painel do canto superi
 
 ```
 CgGame/
-├── index.html            página, import map do three.js e painel (HUD)
+├── index.html            página da cena, import map do three.js e painel (HUD)
+├── modelos.html          vitrine dos modelos com grade e eixos
 ├── css/style.css         estilos da página e do painel
+├── docs/                 relatórios das entregas e capturas de tela
 └── src/
     ├── main.js           monta a cena, teclas, redimensionamento e loop de render
+    ├── vitrine.js        cena da vitrine dos modelos
     ├── config.js         mapa do labirinto (28x31), cores e tamanhos
     ├── scene/
     │   ├── Maze.js       cenário: chão, paredes, porta e pastilhas
