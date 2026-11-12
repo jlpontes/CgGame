@@ -19,10 +19,10 @@ Na Entrega 03, o projeto contava com modelos 3D sólidos e coloridos através da
 
 Foram utilizadas quatro texturas de alta definição no formato de imagem (salvas na pasta `assets/`), superando a exigência mínima da entrega:
 
-* **Chão:** `chao_2.jpg` (Textura de piso/ladrilhos escuros).
-* **Paredes:** `parede_2.jpg` (Textura de concreto e alvenaria).
-* **Pac-Man:** `pacman_2.jpg` (Textura com trama tipo tecido para destaque na iluminação focal).
-* **Fantasmas:** `fantasma_2.jpg` (Textura rugosa/granulada neutra em escala de cinza).
+* **Chão:** `chao.jpg` (Textura de piso/ladrilhos escuros).
+* **Paredes:** `parede.jpg` (Textura de concreto e alvenaria).
+* **Pac-Man:** `pacman.jpg` (Textura com trama tipo tecido para destaque na iluminação focal).
+* **Fantasmas:** `fantasma.jpg` (Textura rugosa/granulada neutra em escala de cinza).
 
 **Abordagem Técnica:**
 Em vez de importar modelos do Blender com texturas embutidas, optamos por utilizar o `THREE.TextureLoader()`. Carregamos os arquivos e os aplicamos na propriedade `map` dos nossos materiais nativos (`MeshStandardMaterial`). Essa abordagem demonstrou o domínio da equipe sobre a API do Three.js, mantendo o código procedural e o carregamento rápido.
