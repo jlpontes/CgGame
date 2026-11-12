@@ -43,8 +43,8 @@ export const MAZE_LAYOUT = [
 
 export const COLORS = {
   background: 0x02020a,
-  floor: 0x0a0a1e,
-  wall: 0x1c2fd6,
+  floor: 0xdce4f2,
+  wall: 0x5282ff,
   wallEdge: 0x5a7cff,
   door: 0xffb8ff,
   pellet: 0xffd2b0,

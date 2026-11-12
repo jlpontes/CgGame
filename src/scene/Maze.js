@@ -77,7 +77,7 @@ export class Maze {
     const boxGeo = new THREE.BoxGeometry(1, h, 1);
     //textura da parede
     const loader = new THREE.TextureLoader();
-    const wallTex = loader.load('assets/parede.jpg');
+    const wallTex = loader.load('assets/parede.png');
     wallTex.colorSpace = THREE.SRGBColorSpace;
     const boxMat = new THREE.MeshStandardMaterial({ map: wallTex, color: COLORS.wall, roughness: 0.45, metalness: 0.2 });
     const blocks = new THREE.InstancedMesh(boxGeo, boxMat, walls.length);

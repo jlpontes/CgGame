@@ -13,7 +13,7 @@ export function createPacman({ mouthAngle = 0.4 } = {}) {
   const pacmanTex = loader.load('assets/pacman.jpg');
   pacmanTex.colorSpace = THREE.SRGBColorSpace;
 
-  const bodyMat = new THREE.MeshStandardMaterial({ map: pacmanTex, color: 0xffffff, roughness: 0.35, metalness: 0.05 });
+  const bodyMat = new THREE.MeshStandardMaterial({ map: pacmanTex, color: 0xffea75, roughness: 0.35, metalness: 0.05 });
   const mouthMat = new THREE.MeshStandardMaterial({ color: 0x7a1010, roughness: 0.8, side: THREE.DoubleSide });
   const eyeMat = new THREE.MeshStandardMaterial({ color: 0x111111, roughness: 0.2 });
 
