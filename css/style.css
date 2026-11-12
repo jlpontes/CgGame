@@ -397,3 +397,13 @@ kbd {
 #help-btn:hover {
   border-color: #ffd23a;
 }
+
+/* Painel antigo de câmera/luzes: escondido para não poluir o jogo.
+   As teclas 1-6 e C continuam funcionando (ver instruções com I). */
+#hud[hidden] {
+  display: none;
+}
+
+.help-card a {
+  color: #8fa2ff;
+}
