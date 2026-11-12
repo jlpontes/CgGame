@@ -54,8 +54,8 @@ export class CameraSystem {
         camera: new THREE.PerspectiveCamera(45, aspect, 0.5, 200),
         // Câmera fixa, alta e inclinada, enquadrando o labirinto inteiro
         update: (cam) => {
-          const k = Math.max(1, 1.25 / cam.aspect); // afasta em telas estreitas
-          cam.position.set(0, 33 * k, 19 * k);
+          const k = Math.max(1, 1.3 / cam.aspect); // afasta em telas estreitas
+          cam.position.set(0, 37 * k, 20 * k);
           cam.lookAt(0, 0, 1);
         },
       },

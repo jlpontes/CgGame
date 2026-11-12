@@ -110,3 +110,7 @@ kbd {
   font-size: 11px;
   text-align: center;
 }
+
+#hud a {
+  color: #8fa2ff;
+}
