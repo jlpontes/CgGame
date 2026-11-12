@@ -12,6 +12,7 @@ Jogo Pac-Man em 3D feito com [three.js](https://threejs.org/) (r160), em HTML + 
 |---|---|---|
 | 02 | Modelagem 3D e construção inicial da cena | [docs/relatorio-entrega-02.md](docs/relatorio-entrega-02.md) |
 | 03 | Câmeras, projeção perspectiva e iluminação | [docs/relatorio-entrega-03.md](docs/relatorio-entrega-03.md) |
+| 04 | Texturas e Materiais | [docs/relatorio-entrega-04.md](docs/relatorio-entrega-04.md) |
 
 As capturas de tela estão em [`docs/capturas/`](docs/capturas/).
 
@@ -83,3 +84,7 @@ Definidas em `src/scene/Lights.js`:
 3. **Pontual** (`PointLight` amarela, filha do Pac-Man): acompanha o personagem e decai com a distância (`decay = 2`), iluminando só a vizinhança dele.
 
 As bordas das paredes e as pastilhas têm um leve brilho próprio (material emissivo), por isso continuam visíveis mesmo com as três luzes desligadas.
+
+## Texturas e Materiais
+
+Os materiais foram aprimorados utilizando `TextureLoader` em conjunto com `MeshStandardMaterial`, permitindo que as texturas (salvas na pasta `assets/`) interajam realisticamente com o sistema de iluminação do jogo. O mapeamento UV foi ajustado proceduralmente para evitar distorções nas primitivas, e as cores base foram redefinidas em `config.js` (`0xdce4f2` para o chão, `0x5282ff` para as paredes, `0xffea75` para o Pac-Man) para garantir contraste e legibilidade adequados sob as luzes dinâmicas.
