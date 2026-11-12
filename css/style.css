@@ -268,3 +268,23 @@ kbd {
     opacity: 0;
   }
 }
+
+/* Painel de câmera/luzes/instruções: canto inferior esquerdo, compacto,
+   para não cobrir o placar */
+#hud {
+  top: auto;
+  bottom: 16px;
+  max-width: 400px;
+  gap: 6px;
+  padding: 8px 10px;
+  font-size: 12px;
+}
+
+#hud-lights {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#hud .light {
+  width: auto;
+}
