@@ -30,13 +30,38 @@
       <ul id="hud-lights"></ul>
     </div>
     <p class="hud-keys">
-      <kbd>←</kbd><kbd>↑</kbd><kbd>→</kbd><kbd>↓</kbd> ou <kbd>WASD</kbd> mover ·
-      <kbd>P</kbd> pausa · <kbd>R</kbd> reiniciar · <kbd>M</kbd> som<br />
-      <kbd>1</kbd><kbd>2</kbd><kbd>3</kbd> ou <kbd>C</kbd> câmera ·
-      <kbd>4</kbd><kbd>5</kbd><kbd>6</kbd> luzes ·
+      Pressione <kbd>I</kbd> para ver as instruções ·
       <a href="modelos.html">ver modelos</a>
     </p>
   </aside>
+
+  <!-- Instruções (tela inicial; I abre/fecha durante o jogo) -->
+  <div id="help" hidden>
+    <div class="help-card">
+      <h2>COMO JOGAR</h2>
+      <p class="help-goal">Coma todas as pastilhas sem ser pego pelos fantasmas. Você tem 3 vidas.</p>
+      <div class="help-grid">
+        <section>
+          <h3>Controles</h3>
+          <p><kbd>←</kbd><kbd>↑</kbd><kbd>→</kbd><kbd>↓</kbd> ou <kbd>WASD</kbd> mover</p>
+          <p><kbd>P</kbd> / <kbd>Espaço</kbd> pausar</p>
+          <p><kbd>R</kbd> reiniciar · <kbd>M</kbd> som</p>
+          <p><kbd>1</kbd><kbd>2</kbd><kbd>3</kbd> ou <kbd>C</kbd> trocar câmera</p>
+          <p><kbd>4</kbd><kbd>5</kbd><kbd>6</kbd> ligar/desligar luzes</p>
+          <p class="help-note">Na câmera 3 (terceira pessoa) os comandos são relativos ao Pac-Man: ↑ em frente, ← → viram, ↓ meia-volta.</p>
+        </section>
+        <section>
+          <h3>Pontuação</h3>
+          <p>Pastilha <b>10</b></p>
+          <p>Pastilha de poder <b>50</b></p>
+          <p>Fantasma assustado <b>200 · 400 · 800 · 1600</b></p>
+          <p>Vida extra aos <b>10 000</b></p>
+          <p class="help-note">A pastilha de poder (grande) deixa os fantasmas azuis e vulneráveis por alguns segundos.</p>
+        </section>
+      </div>
+      <p id="help-continue" class="help-continue">Pressione qualquer tecla para continuar</p>
+    </div>
+  </div>
 
   <!-- Placar do jogo -->
   <header id="scoreboard">

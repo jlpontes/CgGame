@@ -150,7 +150,57 @@ function resolveDirection(name) {
   return { x: -f.z, z: f.x };
 }
 
+// Tela de instruções: aparece ao abrir a página (qualquer tecla fecha e vai para
+// "PRONTO!") e depois alterna com a tecla I (pausando o jogo enquanto aberta).
+const helpEl = $('help');
+const helpContinue = $('help-continue');
+let helpOpen = true;
+let helpFirst = true;
+let pausedByHelp = false;
+
+function setHelp(open) {
+  helpOpen = open;
+  helpEl.hidden = !open;
+  helpContinue.textContent = helpFirst
+    ? 'Pressione qualquer tecla para continuar'
+    : 'Pressione I para fechar';
+  if (open && game.status === 'playing') {
+    game.togglePause();
+    pausedByHelp = true;
+  } else if (!open && pausedByHelp) {
+    if (game.status === 'paused') game.togglePause();
+    pausedByHelp = false;
+  }
+}
+setHelp(true);
+
+// Um clique também fecha a tela inicial
+window.addEventListener('pointerdown', () => {
+  if (helpOpen && helpFirst) {
+    helpFirst = false;
+    setHelp(false);
+  }
+});
+
+const MODIFIERS = ['Shift', 'Control', 'Alt', 'Meta', 'CapsLock', 'Tab'];
+
 window.addEventListener('keydown', (e) => {
+  if (helpOpen) {
+    // Tela inicial: qualquer tecla continua. Depois: só o I fecha.
+    if (MODIFIERS.includes(e.key)) return;
+    e.preventDefault();
+    if (helpFirst) {
+      helpFirst = false;
+      setHelp(false);
+    } else if (e.key === 'i' || e.key === 'I') {
+      setHelp(false);
+    }
+    return;
+  }
+  if (e.key === 'i' || e.key === 'I') {
+    setHelp(true);
+    return;
+  }
   if (e.repeat && !KEYS[e.key]) return;
   const dir = KEYS[e.key];
   if (dir) {
@@ -228,7 +278,7 @@ function renderHud() {
     over: ['GAME OVER', `Pontuação: ${game.score} · Recorde: ${game.highScore}`, 'Enter ou R: jogar de novo', 'lose'],
   };
   const m = msgs[game.status];
-  ui.overlay.hidden = !m;
+  ui.overlay.hidden = !m || helpOpen;
   if (m) {
     [ui.title.textContent, ui.text.textContent, ui.sub.textContent] = m;
     ui.overlay.className = m[3] || '';

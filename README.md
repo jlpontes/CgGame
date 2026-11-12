@@ -43,6 +43,7 @@ Coma todas as pastilhas sem ser pego pelos fantasmas. Pastilhas de poder deixam 
 | `R` | Reiniciar |
 | `Enter` | Começar / próximo nível / jogar de novo |
 | `M` | Som liga/desliga |
+| `I` | Mostra/esconde as instruções (também aparecem ao abrir o jogo) |
 
 Pontos: pastilha 10 · pastilha de poder 50 · fantasma 200/400/800/1600 · vida extra aos 10 000. Testes da lógica: `node --test tests/`.
 
