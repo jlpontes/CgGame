@@ -185,6 +185,8 @@ window.addEventListener('pointerdown', () => {
 const MODIFIERS = ['Shift', 'Control', 'Alt', 'Meta', 'CapsLock', 'Tab'];
 
 window.addEventListener('keydown', (e) => {
+  // Atalhos do navegador (Cmd/Ctrl+R, F5, Alt+...) não devem ser interceptados
+  if (e.metaKey || e.ctrlKey || e.altKey || /^F\d+$/.test(e.key)) return;
   if (helpOpen) {
     // Tela inicial: qualquer tecla continua. Depois: só o I fecha.
     if (MODIFIERS.includes(e.key)) return;
