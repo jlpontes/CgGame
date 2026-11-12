@@ -20,7 +20,7 @@
   <canvas id="game"></canvas>
 
   <!-- Painel de demonstração: câmera ativa e teclas -->
-  <aside id="hud">
+  <aside id="hud" hidden>
     <div class="hud-row">
       <span class="hud-label">Câmera</span>
       <span id="hud-camera"></span>
@@ -30,11 +30,59 @@
       <ul id="hud-lights"></ul>
     </div>
     <p class="hud-keys">
-      <kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> ou <kbd>C</kbd> trocar câmera ·
-      <kbd>4</kbd> <kbd>5</kbd> <kbd>6</kbd> liga/desliga luz ·
+      Pressione <kbd>I</kbd> para ver as instruções ·
       <a href="modelos.html">ver modelos</a>
     </p>
   </aside>
+
+  <!-- Instruções (tela inicial; I abre/fecha durante o jogo) -->
+  <div id="help" hidden>
+    <div class="help-card">
+      <h2>COMO JOGAR</h2>
+      <p class="help-goal">Coma todas as pastilhas sem ser pego pelos fantasmas. Você tem 3 vidas.</p>
+      <div class="help-grid">
+        <section>
+          <h3>Controles</h3>
+          <p><kbd>←</kbd><kbd>↑</kbd><kbd>→</kbd><kbd>↓</kbd> ou <kbd>WASD</kbd> mover</p>
+          <p><kbd>P</kbd> / <kbd>Espaço</kbd> pausar</p>
+          <p><kbd>R</kbd> reiniciar · <kbd>M</kbd> som</p>
+          <p><kbd>1</kbd><kbd>2</kbd><kbd>3</kbd> ou <kbd>C</kbd> trocar câmera</p>
+          <p><kbd>4</kbd><kbd>5</kbd><kbd>6</kbd> ligar/desligar luzes</p>
+          <p class="help-note">Na câmera 3 (terceira pessoa) os comandos são relativos ao Pac-Man: ↑ em frente, ← → viram, ↓ meia-volta.</p>
+        </section>
+        <section>
+          <h3>Pontuação</h3>
+          <p>Pastilha <b>10</b></p>
+          <p>Pastilha de poder <b>50</b></p>
+          <p>Fantasma assustado <b>200 · 400 · 800 · 1600</b></p>
+          <p>Vida extra aos <b>10 000</b></p>
+          <p class="help-note">A pastilha de poder (grande) deixa os fantasmas azuis e vulneráveis por alguns segundos.</p>
+        </section>
+      </div>
+      <p class="help-note" style="text-align:center;margin-top:14px"><a href="modelos.html">ver vitrine dos modelos</a></p>
+      <p id="help-continue" class="help-continue">Pressione qualquer tecla para continuar</p>
+    </div>
+  </div>
+
+  <button id="help-btn" type="button"><kbd>I</kbd> Instruções</button>
+
+  <!-- Placar do jogo -->
+  <header id="scoreboard">
+    <div class="sb-item"><span class="sb-label">Pontos</span><span id="sb-score" class="sb-value">0</span></div>
+    <div class="sb-item"><span class="sb-label">Recorde</span><span id="sb-high" class="sb-value">0</span></div>
+    <div class="sb-item"><span class="sb-label">Nível</span><span id="sb-level" class="sb-value">1</span></div>
+    <div class="sb-item"><span class="sb-label">Pastilhas</span><span id="sb-pellets" class="sb-value">0</span></div>
+    <div class="sb-item"><span class="sb-label">Vidas</span><span id="sb-lives" class="sb-value lives"></span></div>
+  </header>
+  <div id="fright-bar" hidden><div id="fright-fill"></div></div>
+
+  <!-- Mensagens de estado (pronto, pausa, vitória, game over) -->
+  <div id="overlay" hidden>
+    <h1 id="overlay-title"></h1>
+    <p id="overlay-text"></p>
+    <p id="overlay-sub"></p>
+  </div>
+  <div id="popups"></div>
 
   <script type="module" src="src/main.js"></script>
 </body>

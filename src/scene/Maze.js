@@ -157,10 +157,16 @@ export class Maze {
     dotMesh.name = 'Pastilhas';
     dotMesh.castShadow = true;
     const m = new THREE.Matrix4();
+    // Referências para esconder/restaurar cada pastilha (chave "col,row")
+    this.pelletRefs = new Map();
+    this.dotMesh = dotMesh;
+    this.dotMatrices = [];
     dots.forEach(({ c, r }, i) => {
       const p = this.toWorld(c, r, 0.4);
       m.makeTranslation(p.x, p.y, p.z);
       dotMesh.setMatrixAt(i, m);
+      this.dotMatrices.push(m.clone());
+      this.pelletRefs.set(`${c},${r}`, { index: i });
     });
     this.group.add(dotMesh);
 
@@ -168,15 +174,45 @@ export class Maze {
     const powerGeo = new THREE.SphereGeometry(SIZES.powerRadius, 24, 16);
     const powerMat = dotMat.clone();
     powerMat.emissiveIntensity = 0.5;
+    this.powerMeshes = [];
     powers.forEach(({ c, r }) => {
       const p = new THREE.Mesh(powerGeo, powerMat);
       p.name = 'Pastilha de poder';
       p.position.copy(this.toWorld(c, r, 0.4));
       p.castShadow = true;
       this.group.add(p);
+      this.powerMeshes.push(p);
+      this.pelletRefs.set(`${c},${r}`, { mesh: p });
     });
+    this.powerMat = powerMat;
 
     this.pelletCount = dots.length;
     this.powerCount = powers.length;
   }
+
+  // Esconde a pastilha da célula (ao ser comida)
+  hidePellet(key) {
+    const ref = this.pelletRefs.get(key);
+    if (!ref) return;
+    if (ref.mesh) ref.mesh.visible = false;
+    else {
+      this.dotMesh.setMatrixAt(ref.index, new THREE.Matrix4().makeScale(0, 0, 0));
+      this.dotMesh.instanceMatrix.needsUpdate = true;
+    }
+  }
+
+  // Mostra todas as pastilhas de novo (nova partida / novo nível)
+  resetPellets() {
+    this.dotMatrices.forEach((m, i) => this.dotMesh.setMatrixAt(i, m));
+    this.dotMesh.instanceMatrix.needsUpdate = true;
+    this.powerMeshes.forEach((p) => (p.visible = true));
+  }
+
+  // Pastilhas de poder pulsam (chamado a cada quadro)
+  animate(time) {
+    const s = 1 + 0.25 * Math.sin(time * 8);
+    this.powerMeshes.forEach((p) => p.scale.setScalar(s));
+    this.powerMat.emissiveIntensity = 0.5 + 0.4 * Math.sin(time * 8);
+  }
 }
+

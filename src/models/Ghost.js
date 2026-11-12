@@ -70,6 +70,8 @@ export function createGhost(color, name = 'Fantasma') {
   }
 
   group.add(head, body, eyes);
+  // Usado pelo jogo: mudar a cor (assustado) e esconder o corpo (comido)
+  group.userData = { bodyMat, baseColor: color, parts: [head, body], eyes };
   group.traverse((o) => {
     if (o.isMesh) {
       o.castShadow = true;

@@ -54,6 +54,8 @@ export function createPacman({ mouthAngle = 0.4 } = {}) {
   body.position.y = r;
   body.add(upper, lower);
   group.add(body);
+  // Partes expostas para a animação da boca (mastigar) no jogo
+  group.userData = { upper, lower, body };
 
   group.traverse((o) => {
     if (o.isMesh) {
