@@ -30,11 +30,31 @@
       <ul id="hud-lights"></ul>
     </div>
     <p class="hud-keys">
-      <kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> ou <kbd>C</kbd> trocar câmera ·
-      <kbd>4</kbd> <kbd>5</kbd> <kbd>6</kbd> liga/desliga luz ·
+      <kbd>←</kbd><kbd>↑</kbd><kbd>→</kbd><kbd>↓</kbd> ou <kbd>WASD</kbd> mover ·
+      <kbd>P</kbd> pausa · <kbd>R</kbd> reiniciar · <kbd>M</kbd> som<br />
+      <kbd>1</kbd><kbd>2</kbd><kbd>3</kbd> ou <kbd>C</kbd> câmera ·
+      <kbd>4</kbd><kbd>5</kbd><kbd>6</kbd> luzes ·
       <a href="modelos.html">ver modelos</a>
     </p>
   </aside>
+
+  <!-- Placar do jogo -->
+  <header id="scoreboard">
+    <div class="sb-item"><span class="sb-label">Pontos</span><span id="sb-score" class="sb-value">0</span></div>
+    <div class="sb-item"><span class="sb-label">Recorde</span><span id="sb-high" class="sb-value">0</span></div>
+    <div class="sb-item"><span class="sb-label">Nível</span><span id="sb-level" class="sb-value">1</span></div>
+    <div class="sb-item"><span class="sb-label">Pastilhas</span><span id="sb-pellets" class="sb-value">0</span></div>
+    <div class="sb-item"><span class="sb-label">Vidas</span><span id="sb-lives" class="sb-value lives"></span></div>
+  </header>
+  <div id="fright-bar" hidden><div id="fright-fill"></div></div>
+
+  <!-- Mensagens de estado (pronto, pausa, vitória, game over) -->
+  <div id="overlay" hidden>
+    <h1 id="overlay-title"></h1>
+    <p id="overlay-text"></p>
+    <p id="overlay-sub"></p>
+  </div>
+  <div id="popups"></div>
 
   <script type="module" src="src/main.js"></script>
 </body>

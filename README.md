@@ -13,6 +13,7 @@ Jogo Pac-Man em 3D feito com [three.js](https://threejs.org/) (r160), em HTML + 
 | 02 | Modelagem 3D e construção inicial da cena | [docs/relatorio-entrega-02.md](docs/relatorio-entrega-02.md) |
 | 03 | Câmeras, projeção perspectiva e iluminação | [docs/relatorio-entrega-03.md](docs/relatorio-entrega-03.md) |
 | 04 | Texturas e Materiais | [docs/relatorio-entrega-04.md](docs/relatorio-entrega-04.md) |
+| 05 | Jogabilidade, interação e pontuação | [docs/relatorio-entrega-05.md](docs/relatorio-entrega-05.md) |
 
 As capturas de tela estão em [`docs/capturas/`](docs/capturas/).
 
@@ -31,7 +32,21 @@ python3 -m http.server 8000
 
 (Ou use a extensão *Live Server* do VS Code.) É preciso internet para baixar o three.js do CDN.
 
-## Controles (Entrega 03)
+## Como jogar (Entrega 05)
+
+Coma todas as pastilhas sem ser pego pelos fantasmas. Pastilhas de poder deixam os fantasmas vulneráveis por alguns segundos. Você tem 3 vidas.
+
+| Tecla | Ação |
+|---|---|
+| `←` `↑` `→` `↓` ou `WASD` | Mover o Pac-Man (na câmera 3 os comandos são relativos ao personagem) |
+| `P` / `Espaço` | Pausar |
+| `R` | Reiniciar |
+| `Enter` | Começar / próximo nível / jogar de novo |
+| `M` | Som liga/desliga |
+
+Pontos: pastilha 10 · pastilha de poder 50 · fantasma 200/400/800/1600 · vida extra aos 10 000. Testes da lógica: `node --test tests/`.
+
+## Controles de câmera e luz (Entrega 03)
 
 | Tecla | Ação |
 |---|---|
@@ -52,6 +67,7 @@ CgGame/
 ├── index.html            página da cena, import map do three.js e painel (HUD)
 ├── modelos.html          vitrine dos modelos com grade e eixos
 ├── css/style.css         estilos da página e do painel
+├── tests/                testes automáticos da lógica do jogo (node --test tests/)
 ├── docs/                 relatórios das entregas e capturas de tela
 └── src/
     ├── main.js           monta a cena, teclas, redimensionamento e loop de render
@@ -61,6 +77,10 @@ CgGame/
     │   ├── Maze.js       cenário: chão, paredes, porta e pastilhas
     │   ├── Cameras.js    sistema de câmeras + matriz de projeção perspectiva
     │   └── Lights.js     sistema de iluminação (3 fontes)
+    ├── game/
+    │   ├── Game.js       regras, pontuação, vidas, IA dos fantasmas, vitória/derrota
+    │   ├── Movement.js   movimento em grade e colisão com paredes
+    │   └── Sfx.js        efeitos sonoros (Web Audio)
     └── models/
         ├── Pacman.js     modelo do Pac-Man
         └── Ghost.js      modelo dos fantasmas

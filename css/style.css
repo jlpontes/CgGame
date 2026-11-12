@@ -114,3 +114,157 @@ kbd {
 #hud a {
   color: #8fa2ff;
 }
+
+/* ------------------------------------------------------------------ */
+/* Entrega 05 — placar, barra de poder, mensagens e pontuações flutuantes */
+/* ------------------------------------------------------------------ */
+#scoreboard {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  display: flex;
+  gap: 22px;
+  transform: translateX(-50%);
+  padding: 10px 22px;
+  background: rgba(4, 6, 24, 0.82);
+  border: 1px solid #ffd23a;
+  border-radius: 8px;
+  box-shadow: 0 0 18px rgba(255, 210, 58, 0.25);
+  user-select: none;
+}
+
+.sb-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 56px;
+}
+
+.sb-label {
+  color: #8fa2ff;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.sb-value {
+  color: #ffe100;
+  font-size: 22px;
+  font-weight: bold;
+  line-height: 1.2;
+  text-shadow: 0 0 8px rgba(255, 225, 0, 0.5);
+}
+
+.sb-value.bump {
+  animation: bump 0.18s ease-out;
+}
+
+@keyframes bump {
+  50% {
+    transform: scale(1.25);
+  }
+}
+
+.life {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin: 0 2px;
+  border-radius: 50%;
+  background: conic-gradient(from 45deg, #ffe100 0 75%, transparent 0);
+  transform: rotate(-45deg);
+}
+
+#fright-bar {
+  position: fixed;
+  top: 84px;
+  left: 50%;
+  width: 220px;
+  height: 8px;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid #4a54a0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+#fright-fill {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #2f5bff, #8fb2ff);
+}
+
+#overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  background: rgba(2, 2, 10, 0.55);
+  text-align: center;
+  pointer-events: none;
+}
+
+#overlay[hidden],
+#fright-bar[hidden] {
+  display: none;
+}
+
+#overlay h1 {
+  font-size: clamp(40px, 8vw, 84px);
+  letter-spacing: 0.08em;
+  color: #ffe100;
+  text-shadow: 0 0 24px rgba(255, 225, 0, 0.6);
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+#overlay.win h1 {
+  color: #5dff8a;
+  text-shadow: 0 0 24px rgba(93, 255, 138, 0.6);
+}
+
+#overlay.lose h1 {
+  color: #ff4040;
+  text-shadow: 0 0 24px rgba(255, 64, 64, 0.6);
+}
+
+#overlay p {
+  font-size: clamp(14px, 2vw, 22px);
+  color: #dfe6ff;
+}
+
+#overlay-sub {
+  color: #9aa0c0;
+}
+
+@keyframes pulse {
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+#popups {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.popup {
+  position: absolute;
+  color: #7ff6ff;
+  font-size: 22px;
+  font-weight: bold;
+  text-shadow: 0 0 8px #00c8ff;
+  transform: translate(-50%, -50%);
+  animation: rise 1s ease-out forwards;
+}
+
+@keyframes rise {
+  to {
+    margin-top: -50px;
+    opacity: 0;
+  }
+}
